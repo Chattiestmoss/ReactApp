@@ -19,11 +19,13 @@ export function Main() {
       {games.length === 0 ? (
         <ActivityIndicator color="white" size="large" />
       ) : (
-        <ScrollView>
-          {games.map((game) => (
-            <GameCard key={game.slug} game={game} />
-          ))}
-        </ScrollView>
+        <FlatList
+          data={games}
+          keyExtractor={(game) => game.slug}
+          renderItem={({ item, index }) => (
+            <AnimatedGameCard game={item} index={index} />
+          )}
+        />
       )}
     </View>
   );
